@@ -182,6 +182,7 @@
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="box" />
       <input type="hidden" name="_subject" value="Quotation Request Submitted" />
+      <input type="hidden" name="_format" value="plain" />
 
       <!-- Section 1 -->
       <div class="form-section">
@@ -245,9 +246,10 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="additionalDetails">Additional Details</label>
-        <textarea id="additionalDetails" name="Additional Details"></textarea>
+      <div class="form-group" style="grid-column: span 2;">
+        <label for="additionalDetails">Your Message</label>
+        <textarea id="additionalDetails" name="Message" placeholder="Type your message here. This will be sent directly to the recipient." required></textarea>
+        <span class="error-message">Please include a message</span>
       </div>
 
       <button type="submit" class="submit-btn">
