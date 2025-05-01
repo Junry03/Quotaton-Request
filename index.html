@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request a Quotation</title>
+  <style>
+    :root {
+      --gold: #FFD700;
+      --gold-hover: #FFC000;
+      --black: #000000;
+      --white: #FFFFFF;
+      --light-gray: #EEEEEE;
+      --success: #28a745;
+      --error: #dc3545;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--black);
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--white);
+    }
+
+    .form-container {
+      background-color: var(--black);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h3 {
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    h3 {
+      font-size: 18px;
+      margin-top: 30px;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    label {
+      color: var(--gold);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--light-gray);
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .error-message {
+      color: var(--error);
+      font-size: 12px;
+      margin-top: 2px;
+      display: none;
+    }
+    
+    .error input, .error select, .error textarea {
+      border: 1px solid var(--error);
+    }
+    
+    .error .error-message {
+      display: block;
+    }
+
+    .submit-btn {
+      background-color: var(--gold);
+      color: var(--black);
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--gold-hover);
+    }
+    
+    .submit-btn:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .notification {
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+    
+    .success {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .error {
+      background-color: var(--error);
+      color: white;
+    }
+    
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--black);
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>REQUEST A QUOTATION</h1>
+    <form id="quoteForm" action="https://formsubmit.co/gdmi.customercare@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="box" />
+      <input type="hidden" name="_subject" value="Quotation Request Submitted" />
+
+      <!-- Section 1 -->
+      <div class="form-section">
+        <h3>Personal and Company Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="Full Name" required />
+            <span class="error-message">Full name is required</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required />
+            <span class="error-message">Valid email is required</span>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="Phone Number" required />
+            <span class="error-message">Phone number is required</span>
+          </div>
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="Company Name" required />
+            <span class="error-message">Company name is required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="form-section">
+        <h3>Product Details</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="productInterest">Product of Interest</label>
+            <select id="productInterest" name="Product of Interest" required>
+              <option value="">Select product</option>
+              <option value="VL AHRDY">VL AHRDY</option>
+              <option value="SINOMACH">SINOMACH</option>
+              <option value="FAW">FAW</option>
+              <option value="SHACMAN">SHACMAN</option>
+              <option value="YUTONG">YUTONG</option>
+            </select>
+            <span class="error-message">Please select a product</span>
+          </div>
+          <div class="form-group">
+            <label for="productModel">Product Name (Specific Model)</label>
+            <input type="text" id="productModel" name="Product Model" required />
+            <span class="error-message">Product model is required</span>
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label for="euroType">Euro Type</label>
+            <select id="euroType" name="Euro Type" required>
+              <option value="">Select Euro type</option>
+              <option value="Euro 2">Euro 2</option>
+              <option value="Euro 3">Euro 3</option>
+              <option value="Euro 4">Euro 4</option>
+              <option value="Euro 5">Euro 5</option>
+            </select>
+            <span class="error-message">Please select a Euro type</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="additionalDetails">Additional Details</label>
+        <textarea id="additionalDetails" name="Additional Details"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span class="spinner" id="submitSpinner"></span>
+        <span id="submitText">REQUEST QUOTE</span>
+      </button>
+      
+      <div id="notification" class="notification"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('quoteForm');
+    const notification = document.getElementById('notification');
+    const submitButton = form.querySelector('.submit-btn');
+    const submitSpinner = document.getElementById('submitSpinner');
+    const submitText = document.getElementById('submitText');
+    
+    // Simple form validation
+    function validateField(field) {
+      const parent = field.parentElement;
+      
+      if (field.validity.valid) {
+        parent.classList.remove('error');
+        return true;
+      } else {
+        parent.classList.add('error');
+        return false;
+      }
+    }
+    
+    // Validate all fields
+    function validateForm() {
+      const fields = form.querySelectorAll('input[required], select[required]');
+      let isValid = true;
+      
+      fields.forEach(field => {
+        if (!validateField(field)) {
+          isValid = false;
+        }
+      });
+      
+      return isValid;
+    }
+    
+    // Add input event listeners for real-time validation
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('input', () => validateField(field));
+      field.addEventListener('blur', () => validateField(field));
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent default submission
+      
+      // Validate form
+      if (!validateForm()) {
+        showNotification('Please fill in all required fields correctly.', 'error');
+        return;
+      }
+      
+      // Show loading state
+      submitButton.disabled = true;
+      submitSpinner.style.display = 'inline-block';
+      submitText.textContent = 'SUBMITTING...';
+      
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          showNotification('Quote request submitted successfully! We\'ll get back to you soon.', 'success');
+          form.reset();
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 5000);
+        } else {
+          throw new Error('Server error');
+        }
+      }).catch(() => {
+        showNotification('There was an error sending your request. Please try again.', 'error');
+      }).finally(() => {
+        // Reset button state
+        submitButton.disabled = false;
+        submitSpinner.style.display = 'none';
+        submitText.textContent = 'REQUEST QUOTE';
+      });
+    });
+    
+    function showNotification(message, type) {
+      notification.textContent = message;
+      notification.className = 'notification ' + type;
+      notification.style.display = 'block';
+      
+      // Scroll to notification
+      notification.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+</body>
+</html>
